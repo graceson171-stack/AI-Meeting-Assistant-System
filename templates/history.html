@@ -1,0 +1,38 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meeting History</title>
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <main class="container">
+        <header class="header">
+            <h1>Meeting History</h1>
+            <p>View your previously processed meetings.</p>
+        </header>
+
+        <section class="card">
+            {% if meetings %}
+                {% for meeting in meetings %}
+                    <div style="padding: 14px 0; border-bottom: 1px solid #e2e8f0;">
+                        <h2>{{ meeting.title }}</h2>
+                        <p>Saved: {{ meeting.created_at }}</p>
+                        <a class="button"
+                           href="{{ url_for('view_meeting', meeting_id=meeting.id) }}">
+                            View Meeting
+                        </a>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <p>No meetings have been saved yet.</p>
+            {% endif %}
+        </section>
+
+        <a class="button" href="/">Process Another Meeting</a>
+    </main>
+</body>
+</html>

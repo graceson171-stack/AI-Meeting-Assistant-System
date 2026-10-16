@@ -1,0 +1,95 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>AI Meeting Assistant</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+    <main class="container">
+
+        <header class="header">
+            <h1>AI Meeting Assistant</h1>
+            <p>
+                Turn meeting conversations into clear summaries,
+                actionable tasks, and organized notes.
+            </p>
+        </header>
+
+        <section class="card">
+            <h2>Process a Meeting</h2>
+
+            <p>
+                Upload a meeting file or paste a transcript
+                to generate AI-powered meeting notes.
+            </p>
+
+            <form
+                action="{{ url_for('process_transcript') }}"
+                method="POST"
+                enctype="multipart/form-data"
+            >
+                <label for="title">Meeting Title</label>
+
+                <input
+                    type="text"
+                    id="title"
+                    name="title"
+                    placeholder="e.g. Project Planning Meeting"
+                    required
+                >
+
+                <label for="file">Upload Meeting File</label>
+
+                <input
+                    type="file"
+                    id="file"
+                    name="file"
+                    accept=".pdf,.pptx,.mp3,.wav,.m4a,.mp4,.mpeg,.mpga,.webm,.ogg,.flac,.aac"
+                >
+
+                <p class="help-text">
+                    Supported formats: PDF, PPTX, MP3, WAV, M4A,
+                    MP4, MPEG, WEBM, OGG, FLAC, and AAC.
+                    Maximum file size: 20 MB.
+                </p>
+
+                <p class="help-text">
+                    Upload a file OR paste a transcript below.
+                    Do not use both at the same time.
+                </p>
+
+                <label for="transcript">Meeting Transcript</label>
+
+                <textarea
+                    id="transcript"
+                    name="transcript"
+                    rows="10"
+                    placeholder="Paste your meeting transcript here..."
+                ></textarea>
+
+                <button type="submit">
+                    Generate Meeting Notes
+                </button>
+            </form>
+        </section>
+
+        <p class="history-link">
+            <a href="{{ url_for('meeting_history') }}">
+                View Saved Meetings
+            </a>
+        </p>
+
+        <footer class="footer">
+            AI Meeting Assistant · Powered by Gemini and Whisper
+        </footer>
+
+    </main>
+</body>
+</html>

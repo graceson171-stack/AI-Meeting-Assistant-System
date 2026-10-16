@@ -1,0 +1,93 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Meeting Notes - AI Meeting Assistant</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+    <style>
+        .analysis-content {
+            white-space: pre-wrap;
+            overflow-wrap: anywhere;
+            line-height: 1.8;
+            font-family: inherit;
+            margin: 0;
+        }
+
+        .result-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin: 24px 0;
+        }
+
+        .result-actions a {
+            display: inline-block;
+            padding: 12px 20px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .history-button {
+            background: #5545ee;
+            color: white;
+        }
+
+        .new-meeting-button {
+            background: white;
+            color: #263b70;
+            border: 1px solid #dce2ee;
+        }
+    </style>
+</head>
+
+<body>
+    <main class="container">
+
+        <header class="header">
+            <h1>Meeting Notes</h1>
+            <p>Your AI-generated meeting analysis</p>
+        </header>
+
+        <section class="card">
+            <h2>Meeting Title</h2>
+            <p>{{ title }}</p>
+        </section>
+
+        <section class="card">
+            <h2>Summary, Action Items and Open Questions</h2>
+
+            <div class="transcript-box">
+                <div class="analysis-content">{{ analysis | replace('**', '') }}</div>
+            </div>
+        </section>
+
+        <section class="card">
+            <h2>Original Transcript</h2>
+
+            <div class="transcript-box">
+                <div class="analysis-content">{{ transcript }}</div>
+            </div>
+        </section>
+
+        <div class="result-actions">
+            <a class="history-button"
+               href="{{ url_for('meeting_history') }}">
+                ← Back to Meeting History
+            </a>
+
+            <a class="new-meeting-button"
+               href="{{ url_for('home') }}">
+                Process Another Meeting
+            </a>
+        </div>
+
+    </main>
+</body>
+</html>
