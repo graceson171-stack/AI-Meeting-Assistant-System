@@ -1,0 +1,6 @@
+Flask
+PyMuPDF
+openai-whisper
+python-pptx
+python-dotenv
+google-genai
